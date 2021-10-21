@@ -1,5 +1,6 @@
 from re import S
 from django.core.management.base import BaseCommand, CommandError
+from microblogs.models import User
 from faker import Faker
 
 class Command(BaseCommand):
@@ -8,7 +9,6 @@ class Command(BaseCommand):
         self.faker = Faker('en_GB')
 
     def handle(self, *args,**options):
-        print("Warning seed has not been implemented")
         for _ in range(100):
             self.user = User.objects.create_user(
                 username = '@'+self.faker.unique.user_name(),
@@ -18,3 +18,4 @@ class Command(BaseCommand):
                 password= self.faker.password(),
                 bio = self.faker.text())
             print(self.user.first_name +" "+self.user.email)
+    
