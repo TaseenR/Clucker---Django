@@ -1,0 +1,13 @@
+<html>
+<head>
+    <title>Clucker</title>
+</head>
+<body>
+    <h1>Feed</h1>
+    <p>Your Feed: </p>
+    <form action= "{%url 'feed' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+    <p><a href = '{%url 'home' %}'>Home Page!</a></p>
+</body>
+</html>

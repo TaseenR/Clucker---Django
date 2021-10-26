@@ -1,7 +1,7 @@
 from logging import exception
 from django.core.exceptions import ValidationError
 from django.test import TestCase
-from .models import User 
+from  microblogs.models import User 
 
 from microblogs.models import User
 
@@ -29,7 +29,7 @@ class UserModelTestCase(TestCase):
 
     def test_username_cannot_be_over_30(self):
         self.user.username = '@' + 'x' * 30
-        self.assert_user_is_invalid
+        self.assert_user_is_invalid()
 
     def test_username_must_be_unique(self):
         second_user = self._create_second_user()

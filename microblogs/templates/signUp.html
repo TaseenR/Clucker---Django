@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>Clucker</title>
+</head>
+<body>
+    <h1>Sign Up Now!</h1>
+    <form action= "{%url 'sign_up' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type= "submit" value = "Sign Up">
+    <p>Here is the sign up form</p>
+    <p><a href = '{% url 'home' %}'>Home Page!</a></p>
+    <p><a href = '#'>Log in!</a></p>
+</body>
+</html>
