@@ -5,7 +5,9 @@ from microblogs.forms import SignUpForm
 from microblogs.models import User
 from django.urls import reverse
 
-class SignUpViewTestCase(TestCase):
+from microblogs.tests.helpers import LogInTester
+
+class SignUpViewTestCase(TestCase, LogInTester):
 
     def setUp(self):
         self.url = reverse('sign_up')
@@ -18,6 +20,7 @@ class SignUpViewTestCase(TestCase):
         'new_password': 'Password123',
         'password_confirmation': 'Password123'
         }
+        self.assertFalse(self._is_logged_in())
 
     def test_sign_up_url(self):
         self.assertEqual(self.url,'/sign_up/')
@@ -45,3 +48,4 @@ class SignUpViewTestCase(TestCase):
         self.assertTemplateUsed(response, 'feed.html')
         user = User.objects.get(username= '@janedoe')
         self.assertTrue(check_password('Password123', user.password))
+        self.assertFalse(self._is_logged_in())

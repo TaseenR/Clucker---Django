@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>Cluckers</title>
+</head>
+<body>
+<h1>User List</h1>
+{% for user in users %}
+<p>
+    <a href="{%url 'show_user' user.pk %}">{{user.username}}</a>
+</p>
+{%endfor%}
+
+</body>
+<footer>
+    <forn action="% url 'feed'%" method="post">
+        {% csrf_token %}
+    </forn>
+</footer>
+</html>

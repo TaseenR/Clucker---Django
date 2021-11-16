@@ -1,6 +1,6 @@
 #Configuration of the adminstrative user interface
 from django.contrib import admin
-from .models import User
+from .models import User, Post
 
 # Register your models here.
 
@@ -8,4 +8,10 @@ from .models import User
 class UserAdmin(admin.ModelAdmin):
     list_display = [
         'username','first_name','last_name','email','is_active'
+    ]
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display= [
+        'author','text','created_at'
     ]

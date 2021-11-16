@@ -5,9 +5,15 @@
 <body>
     <h1>Feed</h1>
     <p>Your Feed: </p>
-    <form action= "{%url 'feed' %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-    <p><a href = '{%url 'home' %}'>Home Page!</a></p>
+    <ul>
+    {%for post in posts%}
+    
+    <li> {{post.author}} - {{post.created_at}}<br/>
+    {{post.text}} - <a href="{% url 'edit_feed' post.pk % }" > Edit</a> </li>
+    <br/>
+    {%endfor%}
+    {{post.text}} - <a href="{% url 'new_post'%}"> New Cluck </a> </li>
+    {% csrf_token%}
+    </ul>
 </body>
 </html>

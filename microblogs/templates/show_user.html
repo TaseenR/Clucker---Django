@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Clucker</title>
+</head>
+<body>
+  <div>
+    <h1>{{user.username}}'s Profile</h1>
+    <p>Here you can view your Profile!</p>
+    <p>Name: {{user.first_name}}</p>
+    <p>Surname: {{user.last_name}}</p>
+    <p>Email: {{user.email}}</p>
+    <p>Bio: {{user.bio}}</p>
+    <p><a href = '{%url 'home' %}'>Home!</a></p>
+  </div>
+</body>
+<footer>
+    <forn action= "{% url 'list' %}" method="post">
+    {%csrf_token%}
+    <p><a href = '{%url 'list' %}'>Back button</a></p>
+    </forn>
+</footer>
+</html>

@@ -2,6 +2,13 @@ from django import forms
 from django.forms import fields, widgets
 from microblogs.models import Post, User
 from django.core.validators import RegexValidator 
+from django.utils import timezone
+
+
+
+class LogInForm(forms.Form):
+    username = forms.CharField(label='Username: ')
+    password = forms.CharField(label='Password: ', widget=forms.PasswordInput())
 
 class SignUpForm(forms.ModelForm):
     class Meta:
@@ -41,3 +48,12 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['text']
         widgets = {'text': forms.Textarea()}
+        
+    def save(self, user):
+        super().save(commit=False)
+        post = Post.objects.create(
+            author = user,
+            text = self.cleaned_data.get('text'),
+            created_at = timezone.now()
+        )
+        return post
